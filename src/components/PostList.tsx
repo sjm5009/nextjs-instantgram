@@ -2,9 +2,28 @@
 
 import { SimplePost } from '@/model/posts';
 import useSWR from 'swr';
+import PostListCard from './PostListCard';
+import GridSpinner from './ui/GridSpinner';
 
 export default function PostList() {
   const { data: posts, isLoading: loading } = useSWR<SimplePost[]>('/api/posts');
 
-  return <ul>{posts && posts.map((post) => <li key={post.id}>{post.text}</li>)}</ul>;
+  return (
+    <section>
+      {loading && (
+        <div className='text-center mt-32'>
+          <GridSpinner color='#F16287' />
+        </div>
+      )}
+      {posts && (
+        <ul>
+          {posts.map((post, index) => (
+            <li key={post.id} className='mb-4'>
+              <PostListCard post={post} priority={index < 2} />
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  );
 }

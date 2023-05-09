@@ -35,7 +35,7 @@ export default function NavBar() {
   const user = session?.user;
 
   return (
-    <div className='sticky top-0 flex justify-between items-center px-7 py-2 border-b'>
+    <div className='sticky top-0 flex justify-between items-center px-7 py-2 border-b bg-white z-50'>
       <Link href='/'>
         <h1 className='text-4xl font-bold'>Instagram</h1>
       </Link>
